@@ -81,19 +81,12 @@ df
 
 df.to_html()
 
-
-# In[41]:
-
-
 browser.quit()
 
 
 # # D1: Scrape High-Resolution Mars’ Hemisphere Images and Titles
 
 # Hemispheres
-
-# In[1]:
-
 
 # Import Splinter and BeautifulSoup
 from splinter import Browser
@@ -107,10 +100,6 @@ browser = Browser('chrome',**executable_path, headless=False)
 # 1. Use browser to visit the URL 
 url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
 browser.visit(url)
-
-
-# In[2]:
-
 
 # 2. Create a list to hold the images and titles.
 hemisphere_image_urls = []
@@ -129,7 +118,7 @@ for index in range(len(links)):
 #     html = browser.html
 #     hemi_soup = soup(html, 'html.parser')
     
-    sample_rel = browser.find_by_text('Sample').first
+    sample_rel = browser.links.find_by_text('Sample').first
 
     # retrieve the full-resolution image URL string and title for the hemisphere image
     hemispheres["img_url"] = sample_rel["href"]
@@ -141,29 +130,9 @@ for index in range(len(links)):
     # Use `browser.back()` to navigate back to the beginning to get the mext hemisphere image.
     browser.back()
 
-
-# In[3]:
-
-
 # 4. Print the list that holds the dictionary of each image url and title.
 hemisphere_image_urls
 
-
-# In[4]:
-
-
 # 5. Quit the browser
 browser.quit()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
